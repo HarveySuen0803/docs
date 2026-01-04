@@ -1,0 +1,19 @@
+{
+  "accentColor": "#1163d0",
+  "cssTheme": "",
+  "enabledCssSnippets": [
+    "test",
+    "custom",
+    "github"
+  ],
+  "baseFontSizeAction": false,
+  "baseFontSize": 12,
+  "interfaceFontFamily": "",
+  "textFontFamily": "",
+  "monospaceFontFamily": "",
+  "theme": "system",
+  "nativeMenus": false,
+  "showViewHeader": false,
+  "translucency": false,
+  "showRibbon": false
+}

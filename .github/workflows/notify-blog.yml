@@ -1,0 +1,16 @@
+name: Notify Blog
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger blog deploy
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.BLOG_DISPATCH_TOKEN }}
+          repository: HarveySuen0803/blog
+          event-type: docs-updated

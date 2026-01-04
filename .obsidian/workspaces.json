@@ -1,0 +1,121 @@
+{
+  "workspaces": {
+    "Harvey": {
+      "main": {
+        "id": "35845b8322aeab84",
+        "type": "split",
+        "children": [
+          {
+            "id": "5999457955327b2d",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "d22ecea78e15055f",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "SpringMVC/SpringMVC.md",
+                    "mode": "source",
+                    "backlinks": false,
+                    "source": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical"
+      },
+      "left": {
+        "id": "57bafa2f7c757d7f",
+        "type": "split",
+        "children": [
+          {
+            "id": "918ab5b6fe18b1de",
+            "type": "tabs",
+            "dimension": 67.37720111214087,
+            "children": [
+              {
+                "id": "6e1c1ced07a7bd34",
+                "type": "leaf",
+                "state": {
+                  "type": "file-explorer",
+                  "state": {
+                    "sortOrder": "alphabetical"
+                  }
+                }
+              },
+              {
+                "id": "bad4dc3a414e9cae",
+                "type": "leaf",
+                "state": {
+                  "type": "search",
+                  "state": {
+                    "query": "",
+                    "matchingCase": false,
+                    "explainSearch": false,
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": "ecff627bca3a2b63",
+            "type": "tabs",
+            "dimension": 32.622798887859126,
+            "children": [
+              {
+                "id": "ba1cf4d0455f28d0",
+                "type": "leaf",
+                "state": {
+                  "type": "bookmarks",
+                  "state": {}
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal",
+        "width": 300
+      },
+      "right": {
+        "id": "09a176cbda932313",
+        "type": "split",
+        "children": [
+          {
+            "id": "a07e8c1c5150e1ab",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "7e38545f2c05ee53",
+                "type": "leaf",
+                "state": {
+                  "type": "outline",
+                  "state": {
+                    "file": "SpringMVC/SpringMVC.md"
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal",
+        "width": 300
+      },
+      "left-ribbon": {
+        "hiddenItems": {
+          "switcher:Open quick switcher": false,
+          "command-palette:Open command palette": false,
+          "graph:Open graph view": false,
+          "workspaces:Manage workspace layouts": false
+        }
+      },
+      "active": "d22ecea78e15055f"
+    }
+  },
+  "active": "Harvey"
+}

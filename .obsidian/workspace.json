@@ -1,0 +1,160 @@
+{
+  "main": {
+    "id": "35845b8322aeab84",
+    "type": "split",
+    "children": [
+      {
+        "id": "0b97dc20bb6f9ce6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7712cfc0abacf0a4",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "57bafa2f7c757d7f",
+    "type": "split",
+    "children": [
+      {
+        "id": "918ab5b6fe18b1de",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6e1c1ced07a7bd34",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "0b726dc200cee691",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "kratos",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "09a176cbda932313",
+    "type": "split",
+    "children": [
+      {
+        "id": "38e41cd860b36a98",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b11a643be764633e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "bili/clickhouse/devops.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of devops"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 346.5,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "bases:Create new base": false,
+      "workspaces:Manage workspace layouts": false,
+      "switcher:Open quick switcher": false,
+      "command-palette:Open command palette": false,
+      "graph:Open graph view": false
+    }
+  },
+  "active": "7712cfc0abacf0a4",
+  "lastOpenFiles": [
+    "harvey/token.md",
+    "bili/clickhouse/test.md",
+    "bili/summary.md",
+    "bili/work.md",
+    "harvey/airport-subscription.md",
+    "harvey/linux-config.md",
+    "linux/harvey-config.md",
+    "springboot/auto-configuration.md",
+    "harvey",
+    "git/git.md",
+    "bili/clickhouse/devops.md",
+    "git/basic.md",
+    "clickhouse/compile.md",
+    "draft/02.md",
+    "draft/01.md",
+    "kratos/basic.md",
+    "clickhouse/build.md",
+    "zookeeper/basic.md",
+    "mysql/basic.md",
+    "tools/macos-default-app.md",
+    "cpp/oop.md",
+    "tools",
+    "draft/03.md",
+    "docker/basic.md",
+    "design-pattern/visitor-pattern.md",
+    "bili/clickhouse-dictionary/devops.md",
+    "distributed/zab.md",
+    "redis/data-structure.md",
+    "kratos",
+    "bili/clickhouse-dictionary",
+    "bili/clickhouse",
+    "bili",
+    "clickhouse/bases.base",
+    "Untitled.base",
+    "bases.base",
+    "scala",
+    "algorithm/image/Pasted image 20250102173733.png",
+    "system-design/image/Pasted image 20241230170144.png",
+    "Draft/image/Pasted image 20241225143721.png",
+    "Draft/image/Pasted image 20241225142337.png",
+    "Draft/image/Pasted image 20241225142310.png",
+    "Draft/image/Pasted image 20241225142256.png",
+    "Draft/image/Pasted image 20241225142236.png",
+    "Draft/image/Pasted image 20241225142159.png",
+    "Draft/image/Pasted image 20241225142117.png",
+    "Draft/image/Pasted image 20241225142101.png",
+    "test.canvas"
+  ]
+}
