@@ -1,0 +1,85 @@
+# Stream
+
+## XADD, XREAD, XDEL, XTRIM
+
+```
+XADD s1 * k1 v1
+XADD s1 * k2 v2 k3 v3
+XADD s1 * k4 v4
+
+XDEL s1 1693755262361-0
+
+XREAD COUNT 3 BLOCK 200 STREAMS s1 0
+XREAD COUNT 1 BLOCK 0 STREAMS s1 $
+
+XTRIM s1 MAXLEN 2
+XTRIM s1 MINID 1693755262361-0
+```
+
+## XLEN, XRANGE, XREVRANGE
+
+```
+XLEN s1
+
+XRANGE s1 - +
+
+XREVRANGE s1 + -
+```
+
+## XGROUP, XREADGROUP, XACK, XPENDING
+
+通过 XREADGROUP 读取消息, 消息可回溯, 可以多个消费者争抢消息, 加快消费速度, 还可以堵塞读取.
+
+通过 XACK 保证每个消息至少被消费一次.
+
+通过 XPENDING 解决异常后消息漏读的问题.
+
+```
+XGROUP CREATE s1 g1 0
+XGROUP CREATE s1 g1 0 MKSTREAM
+XGROUP CREATE s1 g2 $
+
+XREADGROUP GROUP g1 c1 COUNT 1 BLOCK 200 STREAMS s1 > # k1
+XREADGROUP GROUP g1 c2 COUNT 1 BLOCK 200 STREAMS s1 > # k2
+XREADGROUP GROUP g2 c1 COUNT 1 BLOCK 200 STREAMS s1 > # k1
+
+XACK s1 g1 1703381614014-0 1703381614017-0
+
+XPENDING s1 g1 - + 10
+```
+
+# PubSub
+
+PubSub 采用 Publish 和 Subscrible 的方式实现 MQ, 支持多个 Publisher, 多个 Consumer.
+
+PubSub 不支持持久化, 无法避免消息丢失, 消息堆积有上限, 超出后就直接丢失.
+
+## SUBSCRIBE, UNSUBSCRIBE
+
+```
+SUBSCRIBE c1 c2 c3
+
+UNSUBSCRIBE c1 c2
+```
+
+## PUBLISH
+
+```
+PUBLISH c1 "hello world"
+```
+
+## PSUBSCRIBE
+
+```
+PSUBSCRIBE a* b? c??
+```
+
+## PUBSUB
+
+```
+PUBSUB NUMPAT
+
+PUBSUB CHANNELS
+
+PUBSUB NUMSUB c1
+```

@@ -1,0 +1,15 @@
+filters:
+  and:
+    - file.inFolder("clickhouse")
+    - file.name != "bases.base"
+views:
+  - type: table
+    name: Table
+    order:
+      - file.name
+      - file.ctime
+      - file.mtime
+    columnSize:
+      file.ctime: 281
+  - type: table
+    name: View
