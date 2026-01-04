@@ -1,7 +1,12 @@
+.DS_Store
+
+.vscode/
+
+.obsidian/
+.obsidian-mobile/
+
 draft/
 work/
 bili/
-.obsidian/
-.vscode/
-.DS_Store
+harvey/
 
