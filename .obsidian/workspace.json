@@ -114,6 +114,7 @@
   },
   "active": "7712cfc0abacf0a4",
   "lastOpenFiles": [
+    "iceberg",
     "harvey/token.md",
     "bili/clickhouse/test.md",
     "bili/summary.md",
@@ -141,7 +142,6 @@
     "design-pattern/visitor-pattern.md",
     "bili/clickhouse-dictionary/devops.md",
     "distributed/zab.md",
-    "redis/data-structure.md",
     "kratos",
     "bili/clickhouse-dictionary",
     "bili/clickhouse",
