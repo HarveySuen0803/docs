@@ -14,10 +14,10 @@ jobs:
       #     token: ${{ secrets.BLOG_DISPATCH_TOKEN }}
       #     repository: HarveySuen0803/blog
       #     event-type: docs-updated
-    - name: Trigger blog deploy
-      uses: peter-evans/workflow-dispatch@v3
-      with:
-        token: ${{ secrets.BLOG_DISPATCH_TOKEN }}
-        repository: HarveySuen0803/blog
-        workflow: Deploy Harvey's Blog
-        ref: main
+      - name: Trigger blog deploy
+        uses: peter-evans/workflow-dispatch@v3
+        with:
+          token: ${{ secrets.BLOG_DISPATCH_TOKEN }}
+          repository: HarveySuen0803/blog
+          workflow: Deploy Harvey's Blog
+          ref: main
