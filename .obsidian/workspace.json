@@ -4,22 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "0b97dc20bb6f9ce6",
+        "id": "ce6adb64b11454c3",
         "type": "tabs",
         "children": [
           {
-            "id": "7712cfc0abacf0a4",
+            "id": "cc254070851290da",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "cpp/basic.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "basic"
+              "title": "New tab"
             }
           }
         ]
@@ -54,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "kratos",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -65,8 +60,7 @@
               "title": "Search"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -87,13 +81,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "bili/clickhouse/devops.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of devops"
+              "title": "Outline"
             }
           }
         ]
@@ -112,44 +105,44 @@
       "graph:Open graph view": false
     }
   },
-  "active": "7712cfc0abacf0a4",
+  "active": "cc254070851290da",
   "lastOpenFiles": [
-    "iceberg",
-    "harvey/token.md",
-    "bili/clickhouse/test.md",
+    "clickhouse/executeQuery.md",
+    "bili/common/basic.md",
+    "bili/clickhouse/devops.md",
+    "bili/clickhouse/deploy.md",
+    "bili/clickhouse/compile.md",
     "bili/summary.md",
     "bili/work.md",
+    "bili/clickhouse/tools.md",
+    "bili/common/docker.md",
+    "bili/clickhouse/env.md",
+    "bili/common",
+    "bili/clickhouse/lazy-materialiation.md",
+    "bili/clickhouse/function.md",
+    "bili/clickhouse/test.md",
+    "clickhouse/compile.md",
+    "git/basic.md",
+    "git/git-refactor.md",
+    "bili/clickhouse/log.md",
+    "clickhouse/explain.md",
+    "cpp/container.md",
+    "bili/clickhouse-dictionary/devops.md",
+    "README.md",
+    "clickhouse/basic.md",
+    "cpp/basic.md",
+    "iceberg",
+    "harvey/token.md",
     "harvey/airport-subscription.md",
     "harvey/linux-config.md",
-    "linux/harvey-config.md",
-    "springboot/auto-configuration.md",
     "harvey",
-    "git/git.md",
-    "bili/clickhouse/devops.md",
-    "git/basic.md",
-    "clickhouse/compile.md",
-    "draft/02.md",
-    "draft/01.md",
-    "kratos/basic.md",
-    "clickhouse/build.md",
-    "zookeeper/basic.md",
-    "mysql/basic.md",
-    "tools/macos-default-app.md",
-    "cpp/oop.md",
     "tools",
-    "draft/03.md",
-    "docker/basic.md",
-    "design-pattern/visitor-pattern.md",
-    "bili/clickhouse-dictionary/devops.md",
-    "distributed/zab.md",
     "kratos",
     "bili/clickhouse-dictionary",
     "bili/clickhouse",
     "bili",
     "clickhouse/bases.base",
     "Untitled.base",
-    "bases.base",
-    "scala",
     "algorithm/image/Pasted image 20250102173733.png",
     "system-design/image/Pasted image 20241230170144.png",
     "Draft/image/Pasted image 20241225143721.png",
