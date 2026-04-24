@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "system-design/harvey-interview.md",
+                "file": "harvey/interview.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "harvey-interview"
+              "title": "interview"
             }
           },
           {
@@ -28,13 +28,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "clickhouse/bsi.md",
+                "file": "interview/basic.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "bsi"
+              "title": "basic"
             }
           }
         ],
@@ -102,13 +102,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "clickhouse/bsi.md",
+                "file": "interview/basic.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of bsi"
+              "title": "Outline of basic"
             }
           }
         ]
@@ -128,10 +128,19 @@
   },
   "active": "983f43873ee4a81c",
   "lastOpenFiles": [
+    "system-design/service-preprocess.md",
+    "interview/basic.md",
+    "interview",
+    "system-design/harvey-interview.md",
+    "system-design/realtime-message-push.md",
+    "clickhouse/bsi.md",
+    "system-design/memory-pool.md",
+    "system-design/batch-insert.md",
+    "system-design/weibo.md",
+    "system-design/distributed-replication-bus.md",
+    "system-design/distributed-fifo-queue.md",
     "draft/clickhouse/source-code.md",
     "clickhouse/source-code.md",
-    "system-design/harvey-interview.md",
-    "clickhouse/bsi.md",
     "harvey/interview.md",
     "juc/lock.md",
     "spring/ioc.md",
@@ -146,14 +155,6 @@
     "distributed/seata.md",
     "springboot/aop.md",
     "juc/jmm.md",
-    "distributed/transaction.md",
-    "springboot/mvc.md",
-    "clickhouse/storage-engine.md",
-    "clickhouse/basic.md",
-    "draft/02.md",
-    "clickhouse/insert.md",
-    "clickhouse/skip-index.md",
-    "bili/clickhouse/compile.md",
     "vscode/settings",
     "mnt/storage00/sxc/clickhouse-bili-25.5/src/Analyzer",
     "mnt/storage00/sxc/clickhouse-bili-25.5/src",
@@ -163,7 +164,6 @@
     "mnt",
     "mnt/storage00/sxc/clickhouse-bili-25.5/src/Planner",
     "data-engine",
-    "mnt/storage00/sxc/clickhouse-bili-25.5/src/Dictionaries",
     "bili/clickhouse/image/Pasted image 20260228125633.png",
     "bili/clickhouse/image/Pasted image 20260128183228.png",
     "bili/image/Pasted image 20260128183133.png",
