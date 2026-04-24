@@ -134,3 +134,55 @@ WHERE action_date = '2023-01-01'
 - 检查 action_type.bloom 索引：
     - Block 1 包含 'purchase'，需要读取
 
+# Bloom Filter Index
+
+直接将整个字段存储到 bloom filter 中：
+
+```sql
+CREATE TABLE user_events (
+  event_date Date,
+  event_type LowCardinality(String),
+  user_id UInt64,
+  session_id String,
+  -- user_id 基数很高（百万级），但查询经常按单个 user_id 过滤
+  INDEX idx_user bloom_filter(0.01) ON user_id GRANULARITY 4,
+  -- session_id 同理
+  INDEX idx_session bloom_filter(0.025) ON session_id GRANULARITY 4
+)
+ENGINE = MergeTree()
+ORDER BY (event_date, event_type);
+```
+
+# nrambf_v1
+
+通过 nrambf_v1 分词：
+
+```sql
+INDEX idx_msg_ngram message TYPE ngrambf_v1(3, 256, 2, 0) GRANULARITY 4
+```
+
+```sql
+SELECT * FROM access_logs
+WHERE hasToken(url, 'api') AND hasToken(url, 'v2');
+```
+
+![](https://note-sun.oss-cn-shanghai.aliyuncs.com/image/20260322175202448.png)
+
+# tokenbf_v1
+
+通过 tokenbf_v1 分词：
+
+```sql
+INDEX idx_ua_token user_agent TYPE tokenbf_v1(512, 3, 0) GRANULARITY 4
+```
+
+```sql
+SELECT * FROM access_logs
+WHERE hasToken (url, 'api') AND hasToken (url, 'v2');
+```
+
+![](https://note-sun.oss-cn-shanghai.aliyuncs.com/image/20260322175349458.png)
+
+# 检查跳数索引合理性
+
+![image.png](https://note-sun.oss-cn-shanghai.aliyuncs.com/image/20260322180511715.png)

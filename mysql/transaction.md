@@ -99,7 +99,7 @@ MySQL 提供的 Isolation Level 包含 `read-uncommitted`, `read-committed`, `re
 
 - `read-uncommitted` 可以解决 Dirty Write.
 - `read-committed` 可以解决 Dirty Write, Dirty Read.
-- `repeatable-read` 可以解决 Dirty Write, Dirty Read, Non-Repeatable Read. MySQL 的 `repeatable-read` 可以解决一定的 Phantom Read, 并通过 Row Lock + Gap Lock + Next-Key Lock 解决 Phantom Read.
+- `repeatable-read` 可以解决 Dirty Write, Dirty Read, Non-Repeatable Read, Phantom Read.
 - `serializable` 可以解决 Dirty Write, Dirty Read, Non-Repeatable Read, Phantom Read.
 
 查看当前的 Isolation Level.
@@ -113,6 +113,8 @@ select @@transaction_isolation;
 ```sql
 set session transaction_isolation = 'read-uncommitted';
 ```
+
+Mysql 的 `repeatable-read` 支持 Next-Key Lock (Gap Lock + Row Lock)，通过第一次查询时固定 Read View + Next-Key Lock 的机制，解决了 Phantom Read.
 
 # MVCC
 

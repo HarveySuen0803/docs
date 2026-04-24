@@ -1397,7 +1397,7 @@ public static ListNode reverse(ListNode node) {
     1 -> 2 -> 3 -> 3 ->2 -> 1         3 -> 2 -> 1 -> null
  */
 public static boolean isPalindrome(ListNode head) {
-    ListNode p1 = head; // Quick pointer
+    ListNode p1 = head; // Fast pointer
     ListNode p2 = head; // Slow pointer
     ListNode s = new ListNode(-1);
     ListNode p3 = s;

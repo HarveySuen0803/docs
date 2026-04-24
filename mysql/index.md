@@ -414,7 +414,7 @@ show variables like 'innodb_file_per_table';
 show tables like 'innodb_sys%';
 ```
 
-# Useage Scenarios
+# Usage Scenarios
 
 Field 具有唯一性时, 就必须添加 Unique Index 或 Primary Index, 即使是多个 Field 组成的 Unified Field 具有唯一性, 也需要添加 Unique Index.
 

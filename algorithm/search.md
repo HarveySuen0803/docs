@@ -1,92 +1,22 @@
 # Binary Search
 
-```java
-public static int binarySearch(int[] arr, int val) {
-    int left = 0;
-    int right = arr.length - 1;
-
-    while (left <= right) {
-        int mid = (left + right) >>> 1;
-
-        if (val > arr[mid]) {
-            left = mid + 1;
-        } else if (val < arr[mid]){
-            right = mid - 1;
-        } else {
-            return mid;
-        }
-    }
-
-    return -1;
-}
-```
-
-# Binary Search (Recursion)
-
-```java
-public static int binarySearch(int[] arr, int left, int right, int val) {
-    if (left > right) {
-        return -1;
-    }
-
-    int mid = (left + right) >>> 1;
-
-    if (val < arr[mid]) {
-        return binarySearch(arr, left, mid - 1, val);
-    } else if (arr[mid] < val) {
-        return binarySearch(arr, mid + 1, right, val);
-    } else {
-        return mid;
-    }
-}
-```
-
-# Binary Search (Right Open Interval)
+所有的二分算法题，统一采用下面的二分写法，便于理解：
 
 ```java
 public static int binarySearch(int[] arr, int val) {
-    int left = 0;
-    int right = arr.length; // 右开
-
-    while (left < right) {
-        int mid = (left + right) >>> 1;
-
-        if (arr[mid] < val) {
-            left = mid + 1;
-        } else if (val < arr[mid]) {
-            right = mid;
-        } else {
-            return mid;
-        }
-    }
-    return -1;
-}
-```
-
-# Binary Search (Balance)
-
-Binary Search 的最好时间复杂度是 O(1), 最差时间复杂是 O(log(n)), 但是需要进行 if, else if, else 的判断, 一共需要判断 2 次.
-
-Binary Search (Balance) 只有 if, else 的判断, 一共需要判断 1 次, 性能上稍微有点优势.
-
-Binary Search (Balance) 必须要等到 loop 结束, 即最好时间复杂度和最差时间复杂度都是 O(log(n)).
-
-```java
-public static int binarySearch(int[] arr, int val) {
-    int left = 0;
+    int left = -1;
     int right = arr.length;
-
     while (left + 1 < right) {
         int mid = (left + right) >>> 1;
-
         if (val < arr[mid]) {
             right = mid;
-        } else {
+        } else if (arr[mid] < val) {
             left = mid;
+        } else {
+            return mid;
         }
     }
-
-    return arr[left] == val ? left : -1;
+    return -1;
 }
 ```
 

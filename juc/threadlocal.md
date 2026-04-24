@@ -32,9 +32,9 @@ for (int i = 0; i < 10; i++) {
     new Thread(() -> {
         int copyNum = num;
         for (int j = 0; j < 10; j++) {
-            num++;
+            copyNum++;
         }
-        System.out.println(Thread.currentThread().getName() + " " + num); // 这里最终结果都为 10
+        System.out.println(Thread.currentThread().getName() + " " + copyNum); // 这里最终结果都为 10
     }).start();
 }
 ```
@@ -67,21 +67,10 @@ public class ThreadLocal<T> {
 
 ```java
 public class ThreadLocal<T> {
-    // 先尝试获取 ThreadLocalMap Obj，如果获取不到，则认为是第一次创建 ThreadLocalMap Obj，就调用 setInitialValue() 去创建 ThreadLocalMap Obj，并且返回 ThreadLocal Obj 的默认值，因为是第一次创建 ThreadLocalMap Obj 嘛，所以肯定之前是没有执行过 set() 去修改默认值的，直接返回默认值即可
+    // 先尝试获取 ThreadLocalMap Obj，如果获取不到，则认为是第一次创建 ThreadLocalMap Obj，就调用 setInitialValue() 去创建 ThreadLocalMap Obj，并且返回 ThreadLocal Obj 的默认值
     public T get() {
         // ...
         return setInitialValue();
-    }
-
-    // 直接调用 createMap() 去创建 ThreadLocalMap Obj
-    public void set(T value) {
-        Thread t = Thread.currentThread();
-        ThreadLocalMap map = getMap(t);
-        if (map != null) {
-            map.set(this, value);
-        } else {
-            createMap(t, value);
-        }
     }
 
     // 做了一些初始化的操作，最核心的就是调用 createMap() 去创建 ThreadLocalMap Obj，然后返回默认值

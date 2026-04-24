@@ -104,7 +104,7 @@ B: alter table tbl add col1 int; -- waiting
 C: select * from tbl; -- waiting
 ```
 
-# Record Lock
+# Row Lock
 
 这里 A 抢到了当前行的 X, B 可以随意访问其他行, 但是想要获取当前行的 S 去访问时, 就会进入等待
 
@@ -180,7 +180,7 @@ B: insert into tbl values (3, 'x'); -- waiting
 
 # Next-Key Lock
 
-Next-Key Lock 包含了 Record Lock 和 Gap Lock, 也是 MySQL 8 的 Default Lock, 可以在 Gap Lock 的基础上包含临界点
+Next-Key Lock 包含了 Row Lock 和 Gap Lock, 也是 MySQL 8 的 Default Lock, 可以在 Gap Lock 的基础上包含临界点
 
 这里 A 会锁定 (20, 25), [15, 20), (25, 30) 这三段间隙, B 无法往这三段间隙插入数据
 

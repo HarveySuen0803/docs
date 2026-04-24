@@ -233,7 +233,7 @@ public static int removeDuplicates(int[] nums1) {
     
     System.arraycopy(nums2, 0, nums1, 0, nums1.length);
     
-    return i2;
+    return i2 + 1;
 }
 ```
 
@@ -253,9 +253,10 @@ public static int removeDuplicates(int[] nums) {
     while (i2 < nums.length) {
         // 慢指针 指向的元素 和 快指针不同
         if (nums[i1 - 2] != nums[i2]) {
-            nums[i1++] = nums[i2];
+            nums[i1++] = nums[i2++];
+        } else {
+            i2++;
         }
-        i2++;
     }
     
     return i1;

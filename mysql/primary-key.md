@@ -130,6 +130,22 @@ select uuid_to_bin(uuid(), true);
 
 ![](https://note-sun.oss-cn-shanghai.aliyuncs.com/image/202411181328406.png)
 
+在生成雪花 ID 的服务内，维护一个 lastTimestamp，用于处理时钟回拨问题：
+
+```java
+if (currentTimestamp == lastTimestamp) {
+    sequence++
+} else {
+    sequence = 0
+}
+
+if (currentTimestamp < lastTimestamp) {
+    // 时钟回拨处理
+}
+
+lastTimestamp = currentTimestamp
+```
+
 ### 机器 ID 冲突问题
 
 在分布式环境中，不同节点可能生成相同的机器 ID，导致 ID 冲突。

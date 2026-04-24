@@ -361,6 +361,27 @@ SELECT
 FROM orders;
 ```
 
+# Block 和 Chunk
+
+Block 更偏带有 schema 的表格式数据，在 SQL、解释器、表达式分析这层，大量使用 Block。
+
+Chunk 更偏 pipeline 里流动的一批列数据，在 Processor、Pipeline 执行层，为了高效传输，主要流动的是 Chunk。
+
+每个 Processor 会有一个 header 为 Block 类型，运行时通过 Chunk 传输数据，需要按照 scheam 操作时，再通过 header 将 Chunk 转成 Block，例如，Sink 真正写入数据到磁盘上时，通常会将 Chunk 转成 Block。
+
+pipeline 执行时，如果每次都带着完整 Block 的列名、类型、元信息到处传，会更重，Chunk 的设计目标就是让 processor 之间传递的数据更轻量。
+
+Chunk 还会携带一些运行时的元信息，例如 DeduplicationToken::TokenInfo 保证写入时的幂等去重。
+
+以 INSERT INTO ... VALUES 为例，大致是这样：
+
+- 输入格式解析出一批列数据
+- pipeline 中以 Chunk 形式在各 transform 间流动
+- transform 依据 header Block 知道列类型和顺序
+- Chunk 上可能附带 DeduplicationToken 等 ChunkInfo
+- 到 sink 时，用 header.cloneWithColumns(chunk.getColumns()) 还原成 Block
+- 后续 splitBlockIntoParts()、写 part、排序、索引构建这些又主要基于 Block
+
 # 参考文档
 
 - [MergeTree 表存储引擎图文实例详解](https://cloud.tencent.com/developer/article/1919684)

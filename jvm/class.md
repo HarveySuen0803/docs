@@ -163,7 +163,7 @@ java.xml.ws.annotation*     jdk.zipfs
 
 # System ClassLoader
 
-System ClassLoader 加载 third-part lib
+System ClassLoader 加载 third-part lib 和当前项目中的 .java 代码xiangxiang
 
 get system ClassLoader
 
@@ -197,28 +197,6 @@ Custom ClassLoader 可以隔离其他 ClassLoader, 自定义 Class Loading Metho
 ClassLoader classLoader1 = MyClassLoader.class.getClassLoader();
 ```
 
-# Parent Delegation
-
-Parent Delegation, 一个 ClassLoader 进行 Class Loading, 会一直向 Parent ClassLoader 递交委托, 如果 Parent ClassLoader 处理不了, 才会由 Sub ClassLoader 处理
-
-- 由 System ClassLoader 开始, 向上到 Platform ClassLoader, 最后到 Bootstrap ClassLoader, 如果 Bootstrap ClassLoader 处理不了, 再由 Platform ClassLoader 处理 ...
-- 这里的处理不了主要是在该 ClassLoader 对应处理范围内无法根据 Full Class Name 找不到 Class File
-- eg: MyClass Class 会经过 System ClassLoader -> Platform ClassLoader -> Bootstrap ClassLoader -> Platform ClassLoader -> System ClassLoader, 最终由 System ClassLoader 处理
-- eg: String Class 会经过 System ClassLoader -> Platform ClassLoader -> Bootstrap ClassLoader, 最终由 Bootstrap ClassLoder 处理
-
-Parent Delegation 可以保证安全, 所有的 class 都需要交到 Bootstrap ClassLoader, 这样 core lib 就无法被破坏, 这就是 Sandbox Security Mechanism
-
-Parent Delegation 可以避免重复加载 lib, 每个 ClassLoader 负责一部分, Parent ClassLoader 加载完, 就不会由 Sub ClassLoader 重复加载了
-
-# Break up Parent Delegation
-
-Custom ClassLoader 在某些情况下, 需要绕过 Parent Delegation
-
-- 自定义加载路径: JVM 提供的 Class Loader 都有自己的扫描范围, 如果想要在 Custom ClassLoader 中加载一个 third-part 的 pkg 或者是不在 classpath 下的 pkg, 就需要绕过 Parent Delegation
-- 热部署: 一些应用需要在运行时动态加载和卸载类, 实现热部署的功能, 这就要求自定义类加载器能够加载新的类版本, 并且能够卸载旧的类, Bootstrap ClassLoader 并不提供卸载类的机制, 因此绕过 Bootstrap ClassLoader 可以更灵活地实现热部署
-- 隔离命名空间: 自定义类加载器可以用于隔离不同模块或插件的类加载命名空间, 防止类冲突, 绕过 Bootstrap Class Loader 可以实现更灵活的类加载隔离
-- 特定加载策略: 有些应用可能需要特定的类加载策略, 例如按需加载, 延迟加载等, 自定义类加载器可以实现这些特定的加载策略, 而 Bootstrap Class Loader 并不提供直接的支持
-
 ```java
 public class MyClassLoader extends ClassLoader {
     @Override
@@ -233,3 +211,56 @@ public class MyClassLoader extends ClassLoader {
 }
 ```
 
+SystemClassLoader 不会重复加载同名的 Class，例如，已经加载了一个 com.harvey.plugin.Plugin 后，即使你手动指定 SystemClassLoader.loadClass("com.harvey.plugin.Plugin") 也不会重新加载 com.harvey.plugin.Plugin。
+
+在插件系统中，升级插件，经常需要重新加载相同名字的插件，例如，我们自定的 PluginClassLoader 的扫描范围内，同时有 plugin-v1.jar 和 plugin-v2.jar，其中 plugin-v2.jar 就是新加入插件，他们的类名都是 com.harvey.plugin.Plugin，想要升级插件，就需要丢弃旧的 PluginClassLoader，创建新的 PluginClassLoader 指向 plugin-v2.jar。
+ 
+```java
+public class PluginDemo {
+    public static void load(String jarPath, String className) throws Exception {
+        loader = new URLClassLoader(new URL[]{ new URL("file:" + jarPath) }, Plugin.class.getClassLoader());
+        Class<?> clazz = loader.loadClass(className);
+        plugin = (Plugin) clazz.getDeclaredConstructor().newInstance();
+        plugin.start();
+    }
+
+    // 升级插件（核心）
+    public static void upgrade(String newJar, String className) throws Exception {
+        // 1. 停止旧插件
+        plugin.stop();
+        // 2. 关闭旧 ClassLoader（释放 jar 句柄）
+        loader.close();
+        // 3. 断开引用（关键！）
+        plugin = null;
+        loader = null;
+        // 4. 提示 GC（可选）
+        System.gc();
+        Thread.sleep(200);
+        // 5. 加载新版本
+        load(newJar, className);
+    }
+    
+    public static void main(String[] args) throws Exception {
+        String className = "demo.plugin.GreetingPlugin";
+        // 1. 加载 v1
+        load("plugin-v1.jar", className);
+        run("Alice");
+        // 2. 升级到 v2
+        upgrade("plugin-v2.jar", className);
+        run("Bob");
+    }
+}
+```
+
+# Parent Delegation
+
+Parent Delegation, 一个 ClassLoader 进行 Class Loading, 会一直向 Parent ClassLoader 递交委托, 如果 Parent ClassLoader 处理不了, 才会由 Sub ClassLoader 处理
+
+- 由 System ClassLoader 开始, 向上到 Platform ClassLoader, 最后到 Bootstrap ClassLoader, 如果 Bootstrap ClassLoader 处理不了, 再由 Platform ClassLoader 处理 ...
+- 这里的处理不了主要是在该 ClassLoader 对应处理范围内无法根据 Full Class Name 找不到 Class File
+- eg: MyClass Class 会经过 System ClassLoader -> Platform ClassLoader -> Bootstrap ClassLoader -> Platform ClassLoader -> System ClassLoader, 最终由 System ClassLoader 处理
+- eg: String Class 会经过 System ClassLoader -> Platform ClassLoader -> Bootstrap ClassLoader, 最终由 Bootstrap ClassLoder 处理
+
+Parent Delegation 可以保证安全, 所有的 class 都需要交到 Bootstrap ClassLoader, 这样 core lib 就无法被破坏, 这就是 Sandbox Security Mechanism
+
+Parent Delegation 可以避免重复加载 lib, 每个 ClassLoader 负责一部分, Parent ClassLoader 加载完, 就不会由 Sub ClassLoader 重复加载了

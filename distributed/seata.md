@@ -219,7 +219,7 @@ TM 通知 TC 执行 Commit 或 Rollback, TC 检查 Branch Transaction State, 通
 
 ![](https://note-sun.oss-cn-shanghai.aliyuncs.com/image/202312241753975.png)
 
-TM 调用 RM 执行 try 失败, 造成服务堵塞, TM 发现超市, 通知 TC 执行 Rollback, RM 此时 try 失败, 无法正常执行 Cancel, 可以执行一次 Blank Rollback
+TM 调用 RM 执行 try 失败, 造成服务堵塞, TM 发现超时, 通知 TC 执行 Rollback, RM 此时 try 失败, 无法正常执行 Cancel, 可以执行一次 Blank Rollback
 
 Service Blocking 恢复后, 在 Cancel 后执行 try, 而本次 Transaction 已经结束了, 不会再去执行 Confirm 或 Cancel, 导致 Service Suspension, 所以执行 try 前, 应当判断 Cancel 是否已执行, 避免 Service Suspension
 

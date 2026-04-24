@@ -1,17 +1,25 @@
 # 常用命令
 
 ```shell
+mvn dependency:resolve -U -DskipTests
+
 # generate grpc ...
 mvn clean generate-sources
 
-mvn clean compile -DskipTests
+mvn clean compile -U -DskipTests
 
-mvn clean package -DskipTests
+mvn clean package -U -DskipTests
 
-mvn clean deploy -DskipTests
+mvn clean deploy -U -DskipTests
 
 # force refresh dependency
-mvn clean install -U
+mvn clean install -U -DskipTests
+
+mvn clean install -s ~/.m2/settings.xml
+
+mvn clean install -pl clickhouse-dictionary-toolkits -am -U -DskipTests
+
+mvn clean package -U -DskipTests dependency:copy-dependencies -DoutputDirectory=target/dependency
 ```
 
 ## 依赖范围

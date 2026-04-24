@@ -1,6 +1,6 @@
 # Execution Engine
 
-Class File 包含 Class Instruction, 只有 JVM 能识别 Class Instruction, 需要通过 Eexecution Engine 将 Class Instruction 编译成对应 CPU 的 Machine Instruction.
+Class File 包含 Class Instruction, 只有 JVM 能识别 Class Instruction, 需要通过 Execution Engine 将 Class Instruction 编译成对应 CPU 的 Machine Instruction.
 
 Execution Engine 既可以从 PC Register 中获取下一条 Instruction 的 Address, 也可以通过 Local Variable Table 的 Reference 找到 Heap 中的 Object.
 
@@ -25,4 +25,19 @@ C1 触发 OSR 的阈值默认为 1500 次, C2 触发 OSR 的阈值默认为 1000
 
 HotSpot Detection 统计的是一段时间内代码的热度, 减少长时间不活跃的代码的计数值, 有助于保持对热点代码的准确性, 如果超过一定的时间限度还不达不到阈值, 就会触发 Counter Decay, 减半统计的次数, 这个时间限度就是 Counter Half Life Time. 可以通过 `-XX:-UseCounterDecay` 关闭 Counter Decay. 可以通过 `-XX:CounterHalfLifeTime` 设置 Counter Half Life Time.
 
-JDK9 引入了 AOT (Ahead Of Time Compiler), 借助 Graal Compiler, 牺牲了动态性, 在程序执行前, 将 Class Instruction 全部转成 Machine Instruction. 
+## AOT
+
+JDK9 引入了 AOT (Ahead Of Time Compiler), 借助 Graal Compiler, 牺牲了动态性, 在程序执行前, 将 Class Instruction 全部转成 Machine Instruction. 由于优化能力不如 JIT，并且使用复杂，在 JDK16 被移除。
+
+GraalVM Native Image 是目前主流的 AOT 方案，直接将 Java 程序编译成独立可执行文件，不依赖 JVM 运行
+
+GraalVM Native Image 完全牺牲了动态性，不支持反射，动态代理，SPI，ClassLoader 动态加载，所以在处理多态问题时，就不用再担心有外来的新加载的类，可以直接在编译时识别多台的类型。
+
+```java
+Class<?> clazz = Class.forName("com.xxx." + name); // x，GraalVM 不支持动态加载类
+Animal a = (Animal) clazz.newInstance(); // x，GraalVM 不支持反射
+
+Aniaml a = new Dog(); // GraalVM 不用担心有什么动态加载的类，可以在编译时，直接确定就是 Dog 类型
+a.eat(); 
+```
+

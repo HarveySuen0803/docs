@@ -176,7 +176,7 @@ int main() {
 - 如果不使用 no_unique_address，即使 Empty 类不包含任何数据，编译器仍可能为 emptyMember 分配至少 1 字节的存储空间，导致 Data 的大小至少为 sizeof(int) + 1（考虑内存对齐，可能更大）。
 - 如果使用了 no_unique_address，编译器可以判断 Empty 是一个空类型，并且允许它与其他成员共享存储空间，所以可能只为 int value 分配内存。这样 Data 的大小就可能仅仅是 sizeof(int)（当然，具体结果还取决于编译器的优化和对齐规则）。
 
-# `__attribute__`
+# attribute
 
 `__attribute__` 是 GCC 和 Clang 等编译器提供的一种扩展语法，用来为函数、变量、类型等添加额外的属性（metadata）。这些属性可以指导编译器进行优化、改变代码生成方式或者提供其他编译时信息。下面通过一些详细例子说明其用法，并介绍类似的语法。
 

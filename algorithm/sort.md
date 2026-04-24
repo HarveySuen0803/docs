@@ -458,20 +458,20 @@ public static void quickSort(int[] nums, int l, int r) {
     if (l >= r) return;
     int[] p = partition(nums, l, r);
     quickSort(nums, l, p[0] - 1);
-    quickSort(nums, p[0] + 1, r);
+    quickSort(nums, p[1] + 1, r);
 }
 
 public static int[] partition(int[] nums, int l, int r) {
-    int pv = nums[ThreadLocalRandom.current().nextInt(r - l + 1) + l];
+    int pivot = nums[ThreadLocalRandom.current().nextInt(r - l + 1) + l];
     int pi = l;
     int pl = l - 1;
     int pr = r + 1;
     while (pi < pr) {
-        if (nums[pi] < pv) {
+        if (nums[pi] < pivot) {
             swap(nums, pl + 1, pi);
             pl++;
             pi++;
-        } else if (nums[pi] > pv) {
+        } else if (nums[pi] > pivot) {
             swap(nums, pr - 1, pi);
             pr--;
         } else {

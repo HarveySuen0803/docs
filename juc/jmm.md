@@ -10,11 +10,11 @@ Atomicity, 一个 thread 的操作不会被其他 thread 打断
 
 Orderliness, 不同 CPU 和 OS 下, instruction 可以调整执行顺序来提高性能, 但是有些情况下, 不允许,调整顺序, 需要遵守 Happends-Before
 
-![](https://note-sun.oss-cn-shanghai.aliyuncs.com/image/202312241746185.png)
+![758](https://note-sun.oss-cn-shanghai.aliyuncs.com/image/202312241746185.png)
 
 JMM 为了提高性能, 减少对主内存的频繁访问, 允许修改 Local Memory 中的变量后可以等一会, 不需要立即写回到 Global Memory, 这就可能导致无法保证 Visibility
 
-- T1 在 Local Memory 中修改完变量, 不立即写会到 Global Memory, 此时 T2 读取到的是 Local Memory 中的旧值
+- T1 在 Local Memory 中修改完变量, 不立即写回到 Global Memory, 此时 T2 读取到的是 Local Memory 中的旧值
 
 Local Memory 中的变量满足下面的条件, 才会写回 Global Memory
 
@@ -23,7 +23,7 @@ Local Memory 中的变量满足下面的条件, 才会写回 Global Memory
 
 # Happens-Before
 
-Happens-Before 规范了两个操作的先后关系, 第一个操作的结果对第二个操作可见, 保证 Visibility, 交换两个操作的顺序, 如果不影响结果, 则允许, 如果影响结果, 则不运行, 保证 Orderliness
+Happens-Before 规范了两个操作的先后关系, 第一个操作的结果对第二个操作可见, 保证 Visibility, 交换两个操作的顺序, 如果不影响结果, 则允许, 如果影响结果, 则不允许, 保证 Orderliness
 
 # Memory Fence
 
