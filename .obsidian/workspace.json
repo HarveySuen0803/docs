@@ -37,7 +37,8 @@
               "title": "bsi"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -101,13 +102,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "system-design/harvey-interview.md",
+                "file": "clickhouse/bsi.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of harvey-interview"
+              "title": "Outline of bsi"
             }
           }
         ]
@@ -125,10 +126,12 @@
       "graph:Open graph view": false
     }
   },
-  "active": "a9d569f7536941a5",
+  "active": "983f43873ee4a81c",
   "lastOpenFiles": [
-    "clickhouse/bsi.md",
+    "draft/clickhouse/source-code.md",
+    "clickhouse/source-code.md",
     "system-design/harvey-interview.md",
+    "clickhouse/bsi.md",
     "harvey/interview.md",
     "juc/lock.md",
     "spring/ioc.md",
@@ -148,11 +151,9 @@
     "clickhouse/storage-engine.md",
     "clickhouse/basic.md",
     "draft/02.md",
-    "clickhouse/source-code.md",
     "clickhouse/insert.md",
     "clickhouse/skip-index.md",
     "bili/clickhouse/compile.md",
-    "vscode/settings/basic.md",
     "vscode/settings",
     "mnt/storage00/sxc/clickhouse-bili-25.5/src/Analyzer",
     "mnt/storage00/sxc/clickhouse-bili-25.5/src",
