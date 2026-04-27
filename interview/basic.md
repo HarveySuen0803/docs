@@ -1,3 +1,7 @@
+## 缓存预热系统架构
+
+![](https://note-sun.oss-cn-shanghai.aliyuncs.com/image/warmup-service.jpg)
+
 ## ClickHouse RoaringBitmap 结构
 
 以 16 位的 RoaringBitmap 举例，前 8 位分桶，后 8 位存储数据
@@ -82,6 +86,3 @@ FROM metric_bsi_daily
 WHERE dt = '2026-04-01' AND metric_name = 'gmv';
 ```
 
-## 缓存预热系统架构
-
-![](https://note-sun.oss-cn-shanghai.aliyuncs.com/image/warmup-service.jpg)
